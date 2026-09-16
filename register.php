@@ -74,12 +74,8 @@ $stmt->bind_param(
 
 if ($stmt->execute()) {
 
-    echo "ACCOUNT CREATED SUCCESSFULLY!";
-
-    echo "<br>First Name: " . htmlspecialchars($firstname);
-    echo "<br>Last Name: " . htmlspecialchars($lastname);
-    echo "<br>Username: " . htmlspecialchars($username);
-    echo "<br>Role: " . htmlspecialchars($role);
+    header("Location: ../Login/index.html");
+    exit();
 
 } else {
 
@@ -87,4 +83,7 @@ if ($stmt->execute()) {
 
 }
 
+$stmt->close();
+$conn->close();
 
+?>
