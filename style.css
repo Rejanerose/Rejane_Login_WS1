@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-color: rgb(236, 222, 222);
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 380px;
+    padding: 35px;
+    background-color: rgb(226, 138, 138);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-box h1 {
+    margin: 0 0 10px;
+    color: rgb(71, 20, 20);
+}
+
+.login-box > p {
+    margin-bottom: 25px;
+    color: rgb(0, 0, 0);
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: rgb(71, 20, 20);
+    font-size: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgb(251, 249, 249);
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    border: 2px solid rgb(71, 20, 20);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    background-color: rgb(71, 20, 20);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(221, 25, 113);
+}
+
+.account {
+    margin-top: 20px;
+    color: rgb(80, 62, 62);
+}
+
+.account a {
+    color: rgb(90, 30, 100);
+    text-decoration: underline;
+}
+
+#errorMessage {
+    color: red;
+    font-size: 14px;
+}
