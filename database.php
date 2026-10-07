@@ -1,13 +1,16 @@
 <?php
 
-$host = "sql201.infinityfree.com";
-$username = "if0_42933051";
-$password = "Rejanerose27";
-$database = "if0_42933051_login";
+$host = "sql207.infinityfree.com";
+$user = "if0_42936387";
+$password = "Rejane2006";
+$database = "if0_42936387_portfolio";
 
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($host, $user, $password, $database);
 
 if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
+
+$conn->set_charset("utf8mb4");
+
 ?>
