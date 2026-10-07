@@ -2,10 +2,10 @@
 
 session_start();
 
-require_once "../database.php";
+require_once "database.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: login.html");
+    header("Location: Login/login.html");
     exit();
 }
 
@@ -15,7 +15,6 @@ $password = $_POST["password"] ?? "";
 if ($username === "" || $password === "") {
     die("Please enter username and password.");
 }
-
 
 $stmt = $conn->prepare(
     "SELECT id, firstname, lastname, username, password, role
@@ -29,57 +28,61 @@ if (!$stmt) {
 
 $stmt->bind_param("s", $username);
 
-$stmt->execute();
+if (!$stmt->execute()) {
+    die("Login error: " . $stmt->error);
+}
 
-$result = $stmt->get_result();
+$stmt->store_result();
 
+if ($stmt->num_rows === 1) {
 
-if ($result->num_rows === 1) {
+    $stmt->bind_result(
+        $id,
+        $firstname,
+        $lastname,
+        $db_username,
+        $db_password,
+        $role
+    );
 
-    $user = $result->fetch_assoc();
+    $stmt->fetch();
 
+    if (password_verify($password, $db_password)) {
 
-    if (password_verify($password, $user["password"])) {
+        $_SESSION["user_id"] = $id;
+        $_SESSION["firstname"] = $firstname;
+        $_SESSION["lastname"] = $lastname;
+        $_SESSION["username"] = $db_username;
+        $_SESSION["role"] = $role;
 
+        if ($role === "admin") {
 
-        $_SESSION["user_id"] = $user["id"];
-        $_SESSION["firstname"] = $user["firstname"];
-        $_SESSION["lastname"] = $user["lastname"];
-        $_SESSION["username"] = $user["username"];
-        $_SESSION["role"] = $user["role"];
-
-
-        if ($user["role"] === "admin") {
-
-            header("Location: ../Dashboard/AdminDashboard.php");
+            header("Location: AdminDashboard.php");
             exit();
 
-        } elseif ($user["role"] === "staff") {
+        } elseif ($role === "staff") {
 
-            header("Location: ../Staff/Staff-Dashboard.php");
+            header("Location: Staff-Dashboard.php");
             exit();
 
-        } elseif ($user["role"] === "student") {
+        } elseif ($role === "student") {
 
-            header("Location: ../Student/Student-Dashboard.php");
+            header("Location: Student-Dashboard.php");
             exit();
 
         } else {
 
-            die("Invalid user role: " . htmlspecialchars($user["role"]));
-
+            die("Invalid user role: " . htmlspecialchars($role));
         }
 
     } else {
 
         die("Incorrect password.");
-
     }
 
 } else {
 
     die("Username not found.");
-
 }
 
 $stmt->close();
