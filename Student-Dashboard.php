@@ -38,16 +38,20 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "student") {
             Dashboard
         </a>
 
-        <a href="#">
+        <a href="My-Profile.php">
             My Profile
         </a>
 
-        <a href="#">
-            My Subjects
+        <a href="My-Fee.php">
+            My Fee
         </a>
 
-        <a href="#">
-            Grades
+        <a href="My-Payment.php">
+            My Payments
+        </a>
+
+        <a href="My-Balance.php">
+             My Balance
         </a>
 
         <a href="../Login/logout.php">
@@ -65,7 +69,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "student") {
             </h1>
 
             <p>
-                Welcome to your Student Dashboard.
+                Welcome  Student .
             </p>    
 
         </div>
@@ -86,21 +90,31 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "student") {
 
             <div class="card">
 
-                <h3>My Subjects</h3>
+                <h3>My Fee</h3>
 
                 <p>
-                    View  enrolled subjects.
+                    View  Fee.
                 </p>
 
             </div>
 
+            <div class="card">
+
+            <h3> My Payment</h3>
+
+            <p>
+            View Payment.
+            </p>
+            
+            </div> 
+
 
             <div class="card">
 
-                <h3>My Grades</h3>
+                <h3>My Remaing Balance</h3>
 
                 <p>
-                    View grades.
+                    View Balance.
                 </p>
 
             </div>
